@@ -1,3 +1,42 @@
+#top-ui {
+    height: 160px;
+    display: flex;
+    justify-content: center;
+}
+
+#main-ui {
+    display: flex;
+    justify-content: center;
+    gap: 120px;
+}
+
+.title {
+    font-size: 3.6em;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    align-self: center;
+    height: 360px;
+    padding: 100px 32px 42px;
+    border: black 5px solid;
+    border-radius: 25px;
+    gap: 30px;
+}
+
+button {
+    width: 140px;
+    height: 50px;
+    flex-shrink: 0;
+    border: solid 2px white;
+    
+}
+
 .draw-container {
     border: solid 5px black;
+    width: 640px;
+    height: 640px;
+    flex-shrink: 0;
 }
