@@ -1,7 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Comic+Relief:wght@400;700&display=swap');
+
+
+
+body {
+    background-color: rgb(123, 198, 255);
+    font-family: "Comic Relief", Arial, Helvetica, sans-serif;
+    margin: 0px;
+}
+
 #top-ui {
     height: 160px;
     display: flex;
     justify-content: center;
+    margin-bottom: 60px;
+    background-color: rgb(24, 128, 255);
 }
 
 #main-ui {
@@ -12,6 +24,16 @@
 
 .title {
     font-size: 3.6em;
+    color: white;
+}
+
+.color {
+    background-color: white;
+    border: solid 2px rgb(215, 215, 215);
+    border-radius: 100%;
+    align-self: center;
+    height: 102px;
+    width: 102px;
 }
 
 .buttons {
@@ -19,23 +41,76 @@
     flex-direction: column;
     justify-content: end;
     align-self: center;
-    height: 360px;
-    padding: 100px 32px 42px;
-    border: black 5px solid;
+    height: 360x;
+    padding: 32px 32px 20px;
+    border: solid 5px white;
+    background-color: rgb(60, 148, 255);
     border-radius: 25px;
     gap: 30px;
 }
 
 button {
-    width: 140px;
+    width: 180px;
     height: 50px;
     flex-shrink: 0;
     border: solid 2px white;
-    
+    background-color: rgb(23, 105, 207);
+    border-radius: 10px;
+    font-size: 1.3em;
+    color: white;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: rgb(19, 84, 163);
+}
+
+button:active {
+    background-color: rgb(14, 65, 126);
+}
+
+.range {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+input[type="range"] {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 8px;
+    background: white;
+    border-radius: 25px;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    height: 16px;
+    width: 16px;
+    background: rgb(23, 98, 191);
+    border-radius: 50%;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+input[type="range"]:hover::-webkit-slider-thumb {
+  background: rgb(9, 44, 86);
+}
+
+label {
+    color: white;
+    text-align: center;
+    font-size: 1.5em;
+    padding: 0;
 }
 
 .draw-container {
+    background-color: white;
     border: solid 5px black;
+    border-radius: 20px;
     width: 640px;
     height: 640px;
     flex-shrink: 0;
