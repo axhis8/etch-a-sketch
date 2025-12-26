@@ -3,7 +3,12 @@ const drawingContainer = document.querySelector(".draw-container");
 const sizeRange = document.querySelector(".size-range");
 const sizeLabel = document.querySelector(".size-label");
 
-sizeRange.addEventListener('change', () => {
+sizeRange.addEventListener('input', () => {
+    sizeLabel.textContent = `${sizeRange.value} x ${sizeRange.value}`;
+
+    let rows = document.querySelectorAll(".row");
+    rows.forEach((row) => {drawingContainer.removeChild(row)})
+    
     for (let x = 0; x < sizeRange.value; x++) {
         const row = document.createElement("div");
         row.classList.add("row");
@@ -17,9 +22,3 @@ sizeRange.addEventListener('change', () => {
         drawingContainer.appendChild(row); 
     }
 })
-
-sizeRange.addEventListener('input', () => {
-    sizeLabel.textContent = `${sizeRange.value} x ${sizeRange.value}`;
-})
-
-
