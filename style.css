@@ -118,4 +118,7 @@ label {
     width: 640px;
     height: 640px;
     flex-shrink: 0;
+
+    display: flex;
+    flex-wrap: wrap;
 }
