@@ -94,6 +94,8 @@ sizeRange.addEventListener('triggerInput', () => {
 
     resetBtn.addEventListener('click', () => { 
         colorMode = toggleMode(colorBtn);
+        colorInput.value = "#000000";
+        color = colorInput.value
         columns.forEach(column => column.style.backgroundColor = "white");
     })
 
