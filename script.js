@@ -1,6 +1,6 @@
 function drawGrids(size) {
     let rows = document.querySelectorAll(".row");
-    rows.forEach(row => {drawingContainer.removeChild(row)}) // Removes old Grid
+    rows.forEach(row => {drawingContainer.removeChild(row)}) // Removes old Grid (The Columns Color & Event Listeners)
     
     for (let x = 0; x < size; x++) { // Draws new Grid, creates the Rows first then the Columns in each Rows
         const row = document.createElement("div");
@@ -16,12 +16,16 @@ function drawGrids(size) {
     }
 }
 
-function draw() {
+function columnsAddEventListeners() {
     const columns = document.querySelectorAll(".column");
     columns.forEach(column => { // Draws for each Column
         column.addEventListener('mouseover', () => {
+            if (pencilMode) {
 
-            if (erasingMode) {
+                column.style.backgroundColor = color;
+            }
+
+            else if (erasingMode) {
                 column.style.backgroundColor = "white";
 
             } 
@@ -39,7 +43,7 @@ function draw() {
             
             else if (colorMode) {
                 column.style.backgroundColor = color;
-                
+
             }
         })
     })
@@ -47,10 +51,12 @@ function draw() {
 
 function toggleMode(button) {
     colorMode = false;
+    pencilMode = false;
     erasingMode = false;
     rainbowMode = false;
 
     colorBtn.classList.remove("active");
+    pencilBtn.classList.remove("active");
     eraserBtn.classList.remove("active");
     rainbowBtn.classList.remove("active");
 
@@ -64,29 +70,37 @@ const sizeRange = document.querySelector(".size-range");
 const sizeLabel = document.querySelector(".size-label");
 
 drawGrids(sizeRange.value);
-draw();
-
-drawingContainer.addEventListener('mouseenter', draw)
+columnsAddEventListeners();
 
 sizeRange.addEventListener('input', () => {
     sizeLabel.textContent = `${sizeRange.value} x ${sizeRange.value}`;
 
     drawGrids(sizeRange.value);
+    columnsAddEventListeners();
 })
 
 const colorInput = document.querySelector(".color-picker");
 let color = colorInput.value;
 
 const colorBtn = document.querySelector(".color-btn");
+const pencilBtn = document.querySelector(".pencil-btn");
 const eraserBtn = document.querySelector(".erase-btn");
 const rainbowBtn = document.querySelector(".rainbow-btn");
 const resetBtn = document.querySelector(".reset-btn");
 
 let colorMode = true;
+let pencilMode = false;
 let erasingMode = false;
 let rainbowMode = false;
 
 colorInput.addEventListener('input', () => color = colorInput.value)
+
+pencilBtn.addEventListener('click', () => {
+    pencilMode = toggleMode(pencilBtn)
+    
+    colorInput.value = "#000000";
+    color = colorInput.value;
+})
 
 colorBtn.addEventListener('click', () => colorMode = toggleMode(colorBtn))
 
