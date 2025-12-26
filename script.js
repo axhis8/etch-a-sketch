@@ -72,14 +72,16 @@ sizeRange.addEventListener('triggerInput', () => {
                 const letters = "0123456789ABCDEF";
                 let randomColor = "#";
                 for (let i = 0; i < 6; i++) { 
-                    color += letters[Math.floor(Math.random() * 16)];
+                    randomColor += letters[Math.floor(Math.random() * 16)];
                 }
+
                 column.style.backgroundColor = randomColor;
                 // Picks one letter from Variable "letters" & adds it to the "#", thus getting a random HEX Code
             }
             
             else if (colorMode) {
                 column.style.backgroundColor = color;
+                
             }
         })
     })
@@ -94,8 +96,10 @@ sizeRange.addEventListener('triggerInput', () => {
 
     resetBtn.addEventListener('click', () => { 
         colorMode = toggleMode(colorBtn);
+
         colorInput.value = "#000000";
         color = colorInput.value
+
         columns.forEach(column => column.style.backgroundColor = "white");
     })
 
