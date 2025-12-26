@@ -87,6 +87,7 @@ const colorBtn = document.querySelector(".color-btn");
 const pencilBtn = document.querySelector(".pencil-btn");
 const eraserBtn = document.querySelector(".erase-btn");
 const rainbowBtn = document.querySelector(".rainbow-btn");
+const fillBtn = document.querySelector(".fill-btn");
 const resetBtn = document.querySelector(".reset-btn");
 
 let colorMode = true;
@@ -96,14 +97,23 @@ let rainbowMode = false;
 
 colorInput.addEventListener('input', () => color = colorInput.value)
 
-pencilBtn.addEventListener('click', () => pencilMode = toggleMode(pencilBtn)
-)
+pencilBtn.addEventListener('click', () => pencilMode = toggleMode(pencilBtn))
 
 colorBtn.addEventListener('click', () => colorMode = toggleMode(colorBtn))
 
 eraserBtn.addEventListener('click', () => erasingMode = toggleMode(eraserBtn))
 
 rainbowBtn.addEventListener('click', () => rainbowMode = toggleMode(rainbowBtn))
+
+fillBtn.addEventListener('click', () => {
+
+    const columns = document.querySelectorAll(".column");
+    columns.forEach(column => {
+    column.style.removeProperty("opacity");
+    column.style.backgroundColor = color
+});
+
+})
 
 resetBtn.addEventListener('click', () => { 
     colorMode = toggleMode(colorBtn);
@@ -112,5 +122,8 @@ resetBtn.addEventListener('click', () => {
     color = colorInput.value
 
     const columns = document.querySelectorAll(".column");
-    columns.forEach(column => column.style = "background-color: white; border: 0.1px solid rgba(0, 0, 0, 0.208)");
+    columns.forEach(column => {
+        column.style.removeProperty("background-color");
+        column.style.removeProperty("opacity");
+    });
 })
