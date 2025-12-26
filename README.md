@@ -12,12 +12,12 @@ Visit the page online: [Etch-a-Sketch](https://axhis8.github.io/etch-a-sketch/)
 
 ## Features
 
-- Drawing on a Board
+- Drawing on a board by holding the mouse
 - Eraser
 - Color Picker
-- Rainbow Mode
-- Custom Grid Sizing
-- Grid Toggling
+- Rainbow mode
+- Custom grid sizing
+- Grid toggling
 - Board Color filling
 
 ## Built With

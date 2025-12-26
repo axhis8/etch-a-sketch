@@ -22,7 +22,11 @@ function drawGrids(size) {
 function columnsAddEventListeners() {
     const columns = document.querySelectorAll(".column");
     columns.forEach(column => { // Draws for each Column
-        column.addEventListener('mouseover', () => {
+        column.addEventListener('mousemove', () => {
+
+            if (!mouseDown) {
+                return;
+            }
 
             if (pencilMode) {
                 column.style.backgroundColor = color;
@@ -97,6 +101,12 @@ let pencilMode = false;
 let erasingMode = false;
 let rainbowMode = false;
 let toggleGrid = true;
+
+let mouseDown = false;
+drawingContainer.addEventListener('mousedown', () => mouseDown = true);
+drawingContainer.addEventListener('mouseup', () => mouseDown = false); 
+// Both Event Listeners Check if the mouse is down or not, so that it only draws when its down (Check Line 27)
+
 
 drawGrids(sizeRange.value);
 columnsAddEventListeners();
