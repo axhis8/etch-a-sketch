@@ -70,7 +70,7 @@ button {
     background-color: rgb(23, 105, 207);
     border-radius: 10px;
     font-size: 1.3em;
-    color: white;
+    color: lch(100% 0.01 296.81);
     transition: 0.3s;
     cursor: pointer;
 }
@@ -79,7 +79,8 @@ button:hover {
     background-color: rgb(19, 84, 163);
 }
 
-button:active {
+button:active,
+.color-btn {
     background-color: rgb(14, 65, 126);
 }
 

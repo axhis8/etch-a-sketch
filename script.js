@@ -1,4 +1,4 @@
-function createGrids(size) {
+function drawGrids(size) {
     let rows = document.querySelectorAll(".row");
     rows.forEach(row => {drawingContainer.removeChild(row)}) // Removes old Grid
     
@@ -16,11 +16,27 @@ function createGrids(size) {
     }
 }
 
+function toggleMode(button) {
+    colorMode = false;
+    erasingMode = false;
+    rainbowMode = false;
+
+    colorBtn.style.backgroundColor = buttonBaseColor;
+    eraserBtn.style.backgroundColor = buttonBaseColor;
+    rainbowBtn.style.backgroundColor = buttonBaseColor;
+
+    button.style.backgroundColor = buttonClickedColor;
+    return true;
+}
+
 const drawingContainer = document.querySelector(".draw-container");
 
 const sizeRange = document.querySelector(".size-range");
 const sizeLabel = document.querySelector(".size-label");
 const triggerInput = new Event("triggerInput");
+
+const colorInput = document.querySelector(".color-picker");
+let color = colorInput.value;
 
 const colorBtn = document.querySelector(".color-btn");
 const eraserBtn = document.querySelector(".erase-btn");
@@ -30,9 +46,9 @@ const resetBtn = document.querySelector(".reset-btn");
 const buttonBaseColor = "rgb(23, 105, 207)";
 const buttonClickedColor = "rgb(14, 65, 126)";
 
+let colorMode = true;
 let erasingMode = false;
 let rainbowMode = false;
-
 
 sizeRange.addEventListener('input', () => {
     sizeRange.dispatchEvent(triggerInput)
@@ -41,7 +57,7 @@ sizeRange.addEventListener('input', () => {
 sizeRange.addEventListener('triggerInput', () => {
     sizeLabel.textContent = `${sizeRange.value} x ${sizeRange.value}`;
 
-    createGrids(sizeRange.value);
+    drawGrids(sizeRange.value);
 
     const columns = document.querySelectorAll(".column");
     columns.forEach(column => { // Draws for each Column
@@ -50,65 +66,37 @@ sizeRange.addEventListener('triggerInput', () => {
             if (erasingMode) { // Checks if Eraser is on 
                 column.style.backgroundColor = "white";
 
-            } else if (rainbowMode) {
+            } 
+            
+            else if (rainbowMode) {
                 const letters = "0123456789ABCDEF";
-                let color = "#";
-                for (let i = 0; i < 6; i++) {
+                let randomColor = "#";
+                for (let i = 0; i < 6; i++) { 
                     color += letters[Math.floor(Math.random() * 16)];
                 }
-                column.style.backgroundColor = color;
-
+                column.style.backgroundColor = randomColor;
+                // Picks one letter from Variable "letters" & adds it to the "#", thus getting a random HEX Code
             }
             
-            else {
-                column.style.backgroundColor = "black";
- 
+            else if (colorMode) {
+                column.style.backgroundColor = color;
             }
         })
     })
 
-    eraserBtn.addEventListener('click', () => {
-        if (!erasingMode) { // Toggle Erase Button
-            erasingMode = true;
-            eraserBtn.style.backgroundColor = buttonClickedColor;
-            if (rainbowMode) { // Turns the Rainbow Pen off, if it's on
-                rainbowMode = false;
-                rainbowBtn.style.backgroundColor = buttonBaseColor;
-            }
-        }
-        else if (erasingMode) {
-            erasingMode = false;
-            eraserBtn.style.backgroundColor = buttonBaseColor;
-        }
+    colorInput.addEventListener('input', () => color = colorInput.value)
+
+    colorBtn.addEventListener('click', () => colorMode = toggleMode(colorBtn))
+
+    eraserBtn.addEventListener('click', () => erasingMode = toggleMode(eraserBtn))
+
+    rainbowBtn.addEventListener('click', () => rainbowMode = toggleMode(rainbowBtn))
+
+    resetBtn.addEventListener('click', () => { 
+        colorMode = toggleMode(colorBtn);
+        columns.forEach(column => column.style.backgroundColor = "white");
     })
 
-    rainbowBtn.addEventListener('click', () => {
-        if (!rainbowMode) { // Toggle Rainbow Button
-            rainbowMode = true;
-            rainbowBtn.style.backgroundColor = buttonClickedColor;
-            if (erasingMode) { // Turns the Eraser off, if it's on
-                erasingMode = false;
-                eraserBtn.style.backgroundColor = buttonBaseColor;
-            }
-        }
-        else if (rainbowMode) {
-            rainbowMode = false;
-            rainbowBtn.style.backgroundColor = buttonBaseColor;
-        }
-    })
-
-    resetBtn.addEventListener('click', () => {
-        columns.forEach(column => {column.style = "background-color: white"})
-        if (erasingMode) { // Turns the Eraser off, if it's on
-                erasingMode = false;
-                eraserBtn.style.backgroundColor = buttonBaseColor;
-        }
-        if (rainbowMode) { // Turns the Rainbow Pen off, if it's on
-                rainbowMode = false;
-                rainbowBtn.style.backgroundColor = buttonBaseColor;
-            }
-    })
-    
 })
 
 sizeRange.dispatchEvent(triggerInput); // Boot the Site with the Grid
