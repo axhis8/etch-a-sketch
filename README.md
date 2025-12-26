@@ -17,6 +17,8 @@ Visit the page online: [Etch-a-Sketch](https://axhis8.github.io/etch-a-sketch/)
 - Color Picker
 - Rainbow Mode
 - Custom Grid Sizing
+- Grid Toggling
+- Board Color filling
 
 ## Built With
 
