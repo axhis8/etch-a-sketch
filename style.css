@@ -1,9 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Comic+Relief:wght@400;700&display=swap');
 
+* {
+    font-family: "Comic Relief", Arial, Helvetica, sans-serif;
+    box-sizing: border-box;
+}
 
 body {
     background-color: rgb(123, 198, 255);
-    font-family: "Comic Relief", Arial, Helvetica, sans-serif;
     margin: 0px;
 }
 
@@ -54,7 +57,6 @@ body {
     flex-direction: column;
     justify-content: end;
     align-self: center;
-    height: 360x;
     padding: 32px 32px 20px;
     border: solid 5px white;
     background-color: rgb(60, 148, 255);
@@ -70,17 +72,16 @@ button {
     background-color: rgb(23, 105, 207);
     border-radius: 10px;
     font-size: 1.3em;
-    color: lch(100% 0.01 296.81);
+    color: white;
     transition: 0.3s;
     cursor: pointer;
 }
 
-button:hover {
+.buttons>button:hover {
     background-color: rgb(19, 84, 163);
 }
 
-button:active,
-.color-btn {
+.active {
     background-color: rgb(14, 65, 126);
 }
 

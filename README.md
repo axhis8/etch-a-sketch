@@ -29,7 +29,6 @@ Visit the page online: [Etch-a-Sketch](https://axhis8.github.io/etch-a-sketch/)
 - HTML Input
 - JavaScript event handling
 - DOM manipulation
-- Event Dispatching
 - Iteration
 
 ## Screenshot

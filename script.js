@@ -16,54 +16,12 @@ function drawGrids(size) {
     }
 }
 
-function toggleMode(button) {
-    colorMode = false;
-    erasingMode = false;
-    rainbowMode = false;
-
-    colorBtn.style.backgroundColor = buttonBaseColor;
-    eraserBtn.style.backgroundColor = buttonBaseColor;
-    rainbowBtn.style.backgroundColor = buttonBaseColor;
-
-    button.style.backgroundColor = buttonClickedColor;
-    return true;
-}
-
-const drawingContainer = document.querySelector(".draw-container");
-
-const sizeRange = document.querySelector(".size-range");
-const sizeLabel = document.querySelector(".size-label");
-const triggerInput = new Event("triggerInput");
-
-const colorInput = document.querySelector(".color-picker");
-let color = colorInput.value;
-
-const colorBtn = document.querySelector(".color-btn");
-const eraserBtn = document.querySelector(".erase-btn");
-const rainbowBtn = document.querySelector(".rainbow-btn");
-const resetBtn = document.querySelector(".reset-btn");
-
-const buttonBaseColor = "rgb(23, 105, 207)";
-const buttonClickedColor = "rgb(14, 65, 126)";
-
-let colorMode = true;
-let erasingMode = false;
-let rainbowMode = false;
-
-sizeRange.addEventListener('input', () => {
-    sizeRange.dispatchEvent(triggerInput)
-})
-
-sizeRange.addEventListener('triggerInput', () => {
-    sizeLabel.textContent = `${sizeRange.value} x ${sizeRange.value}`;
-
-    drawGrids(sizeRange.value);
-
+function draw() {
     const columns = document.querySelectorAll(".column");
     columns.forEach(column => { // Draws for each Column
         column.addEventListener('mouseover', () => {
 
-            if (erasingMode) { // Checks if Eraser is on 
+            if (erasingMode) {
                 column.style.backgroundColor = "white";
 
             } 
@@ -85,24 +43,63 @@ sizeRange.addEventListener('triggerInput', () => {
             }
         })
     })
+}
 
-    colorInput.addEventListener('input', () => color = colorInput.value)
+function toggleMode(button) {
+    colorMode = false;
+    erasingMode = false;
+    rainbowMode = false;
 
-    colorBtn.addEventListener('click', () => colorMode = toggleMode(colorBtn))
+    colorBtn.classList.remove("active");
+    eraserBtn.classList.remove("active");
+    rainbowBtn.classList.remove("active");
 
-    eraserBtn.addEventListener('click', () => erasingMode = toggleMode(eraserBtn))
+    button.classList.add("active");
+    return true;
+}
 
-    rainbowBtn.addEventListener('click', () => rainbowMode = toggleMode(rainbowBtn))
+const drawingContainer = document.querySelector(".draw-container");
+ 
+const sizeRange = document.querySelector(".size-range");
+const sizeLabel = document.querySelector(".size-label");
 
-    resetBtn.addEventListener('click', () => { 
-        colorMode = toggleMode(colorBtn);
+drawGrids(sizeRange.value);
+draw();
 
-        colorInput.value = "#000000";
-        color = colorInput.value
+drawingContainer.addEventListener('mouseenter', draw)
 
-        columns.forEach(column => column.style.backgroundColor = "white");
-    })
+sizeRange.addEventListener('input', () => {
+    sizeLabel.textContent = `${sizeRange.value} x ${sizeRange.value}`;
 
+    drawGrids(sizeRange.value);
 })
 
-sizeRange.dispatchEvent(triggerInput); // Boot the Site with the Grid
+const colorInput = document.querySelector(".color-picker");
+let color = colorInput.value;
+
+const colorBtn = document.querySelector(".color-btn");
+const eraserBtn = document.querySelector(".erase-btn");
+const rainbowBtn = document.querySelector(".rainbow-btn");
+const resetBtn = document.querySelector(".reset-btn");
+
+let colorMode = true;
+let erasingMode = false;
+let rainbowMode = false;
+
+colorInput.addEventListener('input', () => color = colorInput.value)
+
+colorBtn.addEventListener('click', () => colorMode = toggleMode(colorBtn))
+
+eraserBtn.addEventListener('click', () => erasingMode = toggleMode(eraserBtn))
+
+rainbowBtn.addEventListener('click', () => rainbowMode = toggleMode(rainbowBtn))
+
+resetBtn.addEventListener('click', () => { 
+    colorMode = toggleMode(colorBtn);
+
+    colorInput.value = "#000000";
+    color = colorInput.value
+
+    const columns = document.querySelectorAll(".column");
+    columns.forEach(column => column.style.backgroundColor = "white");
+})
