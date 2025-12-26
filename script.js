@@ -115,11 +115,14 @@ toggleGridBtn.addEventListener('click', () => {
     const columns = document.querySelectorAll(".column");        
         if (toggleGrid) {
             toggleGrid = false;
-            columns.forEach(column => column.classList.remove("grid"))
+            columns.forEach(column => column.classList.remove("grid"));
+            toggleGridBtn.classList.remove("active");
         } 
         else if (!toggleGrid) {
             toggleGrid = true;
-            columns.forEach(column => column.classList.add("grid"))
+            columns.forEach(column => column.classList.add("grid"));
+            toggleGridBtn.classList.add("active");
+
         }
     
 });
