@@ -129,6 +129,6 @@ label {
 }
 
 .draw-container>div>div {
-    border: 1px solid black;
+    border: 0.1px solid rgba(0, 0, 0, 0.208);
     flex: 1;
 }
