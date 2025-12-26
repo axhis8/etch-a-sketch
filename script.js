@@ -9,6 +9,9 @@ function drawGrids(size) {
         for (let y = 1; y <= size; y++) {
             const column = document.createElement("div");
             column.classList.add("column");
+            if (toggleGrid) {
+                column.classList.add("grid");
+            }
             row.appendChild(column);
         }
 
@@ -46,9 +49,9 @@ function columnsAddEventListeners() {
                 column.style.backgroundColor = color;
 
             }
-        })
-    })
-}
+        });
+    });
+};
 
 function toggleMode(button) {
     colorMode = false;
@@ -87,6 +90,7 @@ const colorBtn = document.querySelector(".color-btn");
 const pencilBtn = document.querySelector(".pencil-btn");
 const eraserBtn = document.querySelector(".erase-btn");
 const rainbowBtn = document.querySelector(".rainbow-btn");
+const toggleGridBtn = document.querySelector(".toggle-grid-btn");
 const fillBtn = document.querySelector(".fill-btn");
 const resetBtn = document.querySelector(".reset-btn");
 
@@ -94,36 +98,49 @@ let colorMode = true;
 let pencilMode = false;
 let erasingMode = false;
 let rainbowMode = false;
+let toggleGrid = true;
 
-colorInput.addEventListener('input', () => color = colorInput.value)
+colorInput.addEventListener('input', () => color = colorInput.value);
 
-pencilBtn.addEventListener('click', () => pencilMode = toggleMode(pencilBtn))
+pencilBtn.addEventListener('click', () => pencilMode = toggleMode(pencilBtn));
 
-colorBtn.addEventListener('click', () => colorMode = toggleMode(colorBtn))
+colorBtn.addEventListener('click', () => colorMode = toggleMode(colorBtn));
 
-eraserBtn.addEventListener('click', () => erasingMode = toggleMode(eraserBtn))
+eraserBtn.addEventListener('click', () => erasingMode = toggleMode(eraserBtn));
 
-rainbowBtn.addEventListener('click', () => rainbowMode = toggleMode(rainbowBtn))
+rainbowBtn.addEventListener('click', () => rainbowMode = toggleMode(rainbowBtn));
+
+toggleGridBtn.addEventListener('click', () => {
+    const columns = document.querySelectorAll(".column");        
+        if (toggleGrid) {
+            toggleGrid = false;
+            columns.forEach(column => column.classList.remove("grid"))
+        } 
+        else if (!toggleGrid) {
+            toggleGrid = true;
+            columns.forEach(column => column.classList.add("grid"))
+        }
+});
 
 fillBtn.addEventListener('click', () => {
 
     const columns = document.querySelectorAll(".column");
     columns.forEach(column => {
     column.style.removeProperty("opacity");
-    column.style.backgroundColor = color
+    column.style.backgroundColor = color;
 });
 
-})
+});
 
 resetBtn.addEventListener('click', () => { 
     colorMode = toggleMode(colorBtn);
 
     colorInput.value = "#000000";
-    color = colorInput.value
+    color = colorInput.value;
 
     const columns = document.querySelectorAll(".column");
     columns.forEach(column => {
         column.style.removeProperty("background-color");
         column.style.removeProperty("opacity");
     });
-})
+});

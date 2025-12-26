@@ -131,8 +131,8 @@ label {
     border: solid 5px black;
     align-self: center;
     border-radius: 10px;
-    width: 640px;
-    height: 640px;
+    width: 728px;
+    height: 728px;
     flex-shrink: 0;
     display: flex;
 }
@@ -144,6 +144,9 @@ label {
 }
 
 .draw-container>div>div {
-    border: 0.1px solid rgba(0, 0, 0, 0.208);
     flex: 1;
+}
+
+.grid {
+    border: 0.1px solid rgba(0, 0, 0, 0.1);
 }
