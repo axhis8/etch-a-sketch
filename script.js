@@ -20,6 +20,7 @@ const drawingContainer = document.querySelector(".draw-container");
 
 const sizeRange = document.querySelector(".size-range");
 const sizeLabel = document.querySelector(".size-label");
+const triggerInput = new Event("triggerInput");
 
 const colorBtn = document.querySelector(".color-btn");
 const eraserBtn = document.querySelector(".erase-btn");
@@ -32,7 +33,12 @@ const buttonClickedColor = "rgb(14, 65, 126)";
 let erasingMode = false;
 let rainbowMode = false;
 
+
 sizeRange.addEventListener('input', () => {
+    sizeRange.dispatchEvent(triggerInput)
+})
+
+sizeRange.addEventListener('triggerInput', () => {
     sizeLabel.textContent = `${sizeRange.value} x ${sizeRange.value}`;
 
     createGrids(sizeRange.value);
@@ -104,3 +110,5 @@ sizeRange.addEventListener('input', () => {
     })
     
 })
+
+sizeRange.dispatchEvent(triggerInput); // Boot the Site with the Grid
