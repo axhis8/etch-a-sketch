@@ -21,8 +21,9 @@ function columnsAddEventListeners() {
     columns.forEach(column => { // Draws for each Column
         column.addEventListener('mouseover', () => {
             if (pencilMode) {
-
                 column.style.backgroundColor = color;
+                column.style.opacity = String(Number(column.style.opacity) + 0.1);
+
             }
 
             else if (erasingMode) {
@@ -95,12 +96,8 @@ let rainbowMode = false;
 
 colorInput.addEventListener('input', () => color = colorInput.value)
 
-pencilBtn.addEventListener('click', () => {
-    pencilMode = toggleMode(pencilBtn)
-    
-    colorInput.value = "#000000";
-    color = colorInput.value;
-})
+pencilBtn.addEventListener('click', () => pencilMode = toggleMode(pencilBtn)
+)
 
 colorBtn.addEventListener('click', () => colorMode = toggleMode(colorBtn))
 
@@ -115,5 +112,5 @@ resetBtn.addEventListener('click', () => {
     color = colorInput.value
 
     const columns = document.querySelectorAll(".column");
-    columns.forEach(column => column.style.backgroundColor = "white");
+    columns.forEach(column => column.style = "background-color: white; border: 0.1px solid rgba(0, 0, 0, 0.208)");
 })
