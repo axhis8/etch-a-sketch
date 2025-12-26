@@ -114,11 +114,20 @@ label {
 .draw-container {
     background-color: white;
     border: solid 5px black;
-    border-radius: 20px;
-    width: 640px;
-    height: 640px;
+    align-self: center;
+    /* border-radius: 20px; */
+    width: 600px;
+    height: 600px;
     flex-shrink: 0;
-
     display: flex;
-    flex-wrap: wrap;
+}
+
+.draw-container>div {
+    flex: 1 0 auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.draw-container>div>div {
+    flex: 1;
 }
