@@ -23,6 +23,7 @@ function columnsAddEventListeners() {
     const columns = document.querySelectorAll(".column");
     columns.forEach(column => { // Draws for each Column
         column.addEventListener('mouseover', () => {
+
             if (pencilMode) {
                 column.style.backgroundColor = color;
                 column.style.opacity = String(Number(column.style.opacity) + 0.1);
@@ -73,9 +74,6 @@ const drawingContainer = document.querySelector(".draw-container");
 const sizeRange = document.querySelector(".size-range");
 const sizeLabel = document.querySelector(".size-label");
 
-drawGrids(sizeRange.value);
-columnsAddEventListeners();
-
 sizeRange.addEventListener('input', () => {
     sizeLabel.textContent = `${sizeRange.value} x ${sizeRange.value}`;
 
@@ -100,6 +98,9 @@ let erasingMode = false;
 let rainbowMode = false;
 let toggleGrid = true;
 
+drawGrids(sizeRange.value);
+columnsAddEventListeners();
+
 colorInput.addEventListener('input', () => color = colorInput.value);
 
 pencilBtn.addEventListener('click', () => pencilMode = toggleMode(pencilBtn));
@@ -120,6 +121,7 @@ toggleGridBtn.addEventListener('click', () => {
             toggleGrid = true;
             columns.forEach(column => column.classList.add("grid"))
         }
+    
 });
 
 fillBtn.addEventListener('click', () => {
