@@ -15,10 +15,19 @@ sizeRange.addEventListener('input', () => {
         for (let y = 1; y <= sizeRange.value; y++) {
             const column = document.createElement("div");
             column.classList.add("column");
-            column.style.border = "1px solid black"
             row.appendChild(column);
         }
 
         drawingContainer.appendChild(row); 
     }
+
+    const columns = document.querySelectorAll(".column");
+    columns.forEach((column) => {
+        column.addEventListener('mouseover', () => {
+            column.style = "background-color: black";
+        })
+    })
+
 })
+
+
