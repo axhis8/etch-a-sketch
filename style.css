@@ -15,14 +15,14 @@ body {
     height: 160px;
     display: flex;
     justify-content: center;
-    margin-bottom: 60px;
+    margin-bottom: 27.5px;
     background-color: rgb(24, 128, 255);
 }
 
 #main-ui {
     display: flex;
     justify-content: center;
-    gap: 120px;
+    gap: 80px;
 }
 
 .title {
@@ -61,7 +61,7 @@ body {
     border: solid 5px white;
     background-color: rgb(60, 148, 255);
     border-radius: 25px;
-    gap: 30px;
+    gap: 20px;
 }
 
 button {
@@ -71,7 +71,7 @@ button {
     border: solid 2px white;
     background-color: rgb(23, 105, 207);
     border-radius: 10px;
-    font-size: 1.3em;
+    font-size: 1.2em;
     color: white;
     transition: 0.3s;
     cursor: pointer;
@@ -89,7 +89,7 @@ button {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 15px;
+    gap: 10px;
 }
 
 input[type="range"] {
@@ -131,8 +131,8 @@ label {
     border: solid 5px black;
     align-self: center;
     border-radius: 10px;
-    width: 728px;
-    height: 728px;
+    width: 660px;
+    height: 660px;
     flex-shrink: 0;
     display: flex;
 }
