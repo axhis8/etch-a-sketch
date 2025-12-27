@@ -46,6 +46,7 @@ body {
 
 .color-picker::-webkit-color-swatch { 
     border: none;
+    border-radius: 50%;
 }
 
 .color-picker::-moz-color-swatch {
